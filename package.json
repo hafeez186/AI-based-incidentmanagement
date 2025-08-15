@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "build:gh": "cross-env GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/Incident-task next build"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -33,7 +34,7 @@
   },
   "devDependencies": {
     "@types/uuid": "^9.0.0",
-    "uuid": "^9.0.0",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "uuid": "^9.0.0"
   }
 }

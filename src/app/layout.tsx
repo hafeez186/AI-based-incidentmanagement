@@ -4,7 +4,6 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Incident Management Tool - KB Assistant',
   description: 'AI-powered incident management system with knowledge base assistance',
-  manifest: '/manifest.json',
   themeColor: '#3B82F6',
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   appleWebApp: {
@@ -19,10 +18,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   return (
     <html lang="en">
       <head>
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <link rel="manifest" href={`${basePath}/manifest.json`} />
+        <link
+          rel="apple-touch-icon"
+          href={`${basePath}/icons/icon-192x192.png`}
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="IncidentAI" />
@@ -32,7 +36,7 @@ export default function RootLayout({
             __html: `
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js')
+                  navigator.serviceWorker.register('${basePath}/sw.js')
                     .then(function(registration) {
                       console.log('SW registered: ', registration);
                     })
