@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/health/route": "app/api/health/route.js",
+  "/api/mobile/auth/route": "app/api/mobile/auth/route.js",
+  "/api/mobile/notifications/route": "app/api/mobile/notifications/route.js",
+  "/api/analyze-ticket/route": "app/api/analyze-ticket/route.js",
+  "/api/tickets/route": "app/api/tickets/route.js",
+  "/api/mobile/tickets/route": "app/api/mobile/tickets/route.js",
+  "/api/kb-suggestions/route": "app/api/kb-suggestions/route.js",
+  "/api/mobile/analytics/route": "app/api/mobile/analytics/route.js",
+  "/api/similarity-check/route": "app/api/similarity-check/route.js",
+  "/page": "app/page.js"
+}

@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/health/route": "/api/health",
+  "/api/mobile/auth/route": "/api/mobile/auth",
+  "/api/mobile/notifications/route": "/api/mobile/notifications",
+  "/api/analyze-ticket/route": "/api/analyze-ticket",
+  "/api/tickets/route": "/api/tickets",
+  "/api/mobile/tickets/route": "/api/mobile/tickets",
+  "/api/kb-suggestions/route": "/api/kb-suggestions",
+  "/api/mobile/analytics/route": "/api/mobile/analytics",
+  "/api/similarity-check/route": "/api/similarity-check",
+  "/page": "/"
+}
