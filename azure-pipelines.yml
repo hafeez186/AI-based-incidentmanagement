@@ -1,0 +1,52 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Use Node.js 20.x'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Install dependencies and build Next.js app'
+
+# Archive the full app for deployment
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
+    replaceExistingArchive: true
+    verbose: true
+  displayName: 'Archive full app for deployment'
+
+# Publish the artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.zip'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish build artifact'
+
+# Deploy to Azure Web App (Linux)
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(92b20bad-bbab-4ade-bb6d-eaeeda91a280)'
+    appType: 'webAppLinux'
+    WebAppName: 'elearning-platform'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/app.zip'
+    RuntimeStack: 'NODE|18-lts'
+    DeploymentTypeLinux: 'zipDeploy'
+  displayName: 'Deploy server-rendered Next.js app to Azure'
