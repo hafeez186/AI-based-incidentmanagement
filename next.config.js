@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
-const isGithubPages = process.env.GITHUB_PAGES === 'true';
-
 const nextConfig = {
-  basePath: isGithubPages ? '/Incident-task' : '',
-  assetPrefix: isGithubPages ? '/Incident-task' : '',
   trailingSlash: true,
 
   images: {
@@ -30,23 +26,6 @@ const nextConfig = {
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
-
-  webpack: (config, { dev }) => {
-    if (!dev) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      };
-    }
-    return config;
-  },
-
-  serverExternalPackages: ['@prisma/client'],
 
   eslint: {
     ignoreDuringBuilds: true,
